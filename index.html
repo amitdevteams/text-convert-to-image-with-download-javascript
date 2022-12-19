@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- html2canvas cdn link -->
+    <script src="  https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.0/html2canvas.min.js"></script>
+    <title>div 2 jpg using html2canvas js library</title>
+    <style>
+        .result {
+            display: none;
+        }
+ 
+        canvas {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="html">
+        <h2>Lorem ipsum dolor sit amet.</h2>
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere repudiandae ea libero aspernatur voluptas,
+            possimus iste distinctio sed alias cum officiis quo quis iure explicabo, nulla assumenda asperiores
+            temporibus commodi. Laudantium libero corrupti nisi ab earum, sunt laborum, deleniti ducimus totam quod,
+            deserunt enim consequatur aspernatur soluta nulla eveniet natus!
+        </p>
+        <button onclick="convert()">Convert me to jpg image</button>
+    </div>
+    <div class="result">
+        <a href=""><button>Download JPG</button>
+        </a>
+        <hr>
+ 
+    </div>
+    <script>
+        const div = document.querySelector(".html");
+        const result = document.querySelector(".result");
+ 
+        function convert() {
+            html2canvas(div).then(function (canvas) {
+                result.appendChild(canvas);
+                let cvs = document.querySelector("canvas");
+                let dataURI = cvs.toDataURL("image/jpeg");
+                let downloadLink = document.querySelector(".result>a");
+                downloadLink.href = dataURI;
+                downloadLink.download = "div2canvasimage.jpg";
+                console.log(dataURI);
+            });
+            result.style.display = "block";
+ 
+        }
+    </script>
+</body>
+</html>
